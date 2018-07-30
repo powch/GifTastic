@@ -38,6 +38,9 @@ var funcs = {
     },
     getGifs: function () {
         results.empty();
+        if ($('.navbar-toggler').css('display') !== 'none') {
+            $('.navbar-toggler').trigger('click');
+        }
         var query = $(this).attr('data-name');
         var gifURL = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=tDjp5PLvgtv2hcm320xZ2oF8jKsRCHKK&limit=10`;
         $.ajax({
