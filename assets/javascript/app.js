@@ -30,9 +30,11 @@ var funcs = {
     },
     addButton: function () {
         var str = addInput.val();
-        this.buttonArray.push(str);
-        this.buttonGen();
-        addInput.val('');
+        if (str) {
+            this.buttonArray.push(str);
+            this.buttonGen();
+            addInput.val('');
+        }
     },
     getGifs: function () {
         results.empty();
@@ -68,7 +70,7 @@ var funcs = {
             });
         });
     },
-    animateGif: function() {
+    animateGif: function () {
         if ($(this).attr('data-state') === 'still') {
             $(this).attr('src', $(this).attr('data-animate'));
             $(this).attr('data-state', 'animate');
