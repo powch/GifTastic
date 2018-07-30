@@ -74,7 +74,8 @@ var funcs = {
         if ($(this).attr('data-state') === 'still') {
             $(this).attr('src', $(this).attr('data-animate'));
             $(this).attr('data-state', 'animate');
-        } else if ($(this).attr('data-state') === 'animate') {
+        }
+        else if ($(this).attr('data-state') === 'animate') {
             $(this).attr('src', $(this).attr('data-still'));
             $(this).attr('data-state', 'still');
         }

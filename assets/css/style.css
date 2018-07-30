@@ -5,3 +5,19 @@
 .title {
     font-weight: bold;
 }
+
+#results {
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 575px) {
+    #results {
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #results {
+        margin-top: 25%;
+    }
+}
