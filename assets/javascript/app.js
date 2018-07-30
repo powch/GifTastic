@@ -42,7 +42,6 @@ var funcs = {
             url: gifURL
         }).then(function (res) {
             $.each(res.data, function (key, val) {
-                console.log(val);
                 var newDiv = $('<div>');
                 newDiv.addClass('row mt-5');
 
