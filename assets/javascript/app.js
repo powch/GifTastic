@@ -14,7 +14,8 @@ var funcs = {
         'samoyed',
         'australian shepherd',
         'pug',
-        'bulldog'
+        'bulldog',
+        'french bulldog'
     ],
     buttonGen: function () {
         gifButtons.empty();
@@ -46,26 +47,36 @@ var funcs = {
                 newDiv.addClass('row mt-5');
 
                 var newGifCol = $('<div>');
-                newGifCol.addClass('col-sm-5 offset-sm-2 text-center');
+                newGifCol.addClass('col-sm-6 offset-sm-3 text-center');
 
                 var newGif = $('<img>');
-                newGif.attr('src', val.images.fixed_width.url);
-
-                var newGifDescCol = $('<div>');
-                newGifDescCol.addClass('col-sm-1 text-center');
+                newGif.attr('src', val.images.fixed_width_still.url);
+                newGif.attr('data-still', val.images.fixed_width_still.url);
+                newGif.attr('data-animate', val.images.fixed_width.url);
+                newGif.attr('data-state', 'still');
+                newGif.addClass('gif');
 
                 var newGifTitle = $('<p>');
-                newGifTitle.text(`Title: ${val.title}`);
+                newGifTitle.text(val.title);
+                newGifTitle.addClass('title');
 
                 var newGifRating = $('<p>');
                 newGifRating.text(`Rating: ${val.rating.toUpperCase()}`);
 
-                newGifCol.append(newGif);
-                newGifDescCol.append(newGifTitle, newGifRating);
-                newDiv.append(newGifCol, newGifDescCol);
+                newGifCol.append(newGif, newGifTitle, newGifRating);
+                newDiv.append(newGifCol);
                 results.append(newDiv);
             });
         });
+    },
+    animateGif: function() {
+        if ($(this).attr('data-state') === 'still') {
+            $(this).attr('src', $(this).attr('data-animate'));
+            $(this).attr('data-state', 'animate');
+        } else if ($(this).attr('data-state') === 'animate') {
+            $(this).attr('src', $(this).attr('data-still'));
+            $(this).attr('data-state', 'still');
+        }
     }
 }
 
@@ -77,3 +88,5 @@ addBtn.click(function () {
 });
 
 gifButtons.on('click', '.puppyBtn', funcs.getGifs);
+
+results.on('click', '.gif', funcs.animateGif);
